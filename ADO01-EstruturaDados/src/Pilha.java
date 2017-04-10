@@ -8,8 +8,8 @@ public class Pilha {
     // atributos
     private Object[] dados;
     private int topo;
-// Construtor - Cria uma pilha vazia
 
+// Construtor - Cria uma pilha vazia
     public Pilha() {
         dados = new Object[50];
         topo = -1;
@@ -50,6 +50,27 @@ public class Pilha {
         } else {
             System.out.println("Pilha Vazia");
             return null;
+        }
+    }
+
+    //Insere valor na base
+    public void inserirBase(Object valor) {
+        if (!isEmpty()) {
+            dados[0] = valor;
+        }
+    }
+
+    //Devolve o valor remanescente da base
+    public Object valorBase() {
+        return dados[0];
+    }
+    
+    //Metodo para verificar se ainda ha 2 ou mais cartas para continuar jogando.
+    public boolean verificarCartas(){
+        if (topo < 1) {
+            return false;
+        }else{
+            return true;
         }
     }
 }
