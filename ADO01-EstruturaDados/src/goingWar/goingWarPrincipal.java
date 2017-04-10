@@ -19,47 +19,47 @@ public class goingWarPrincipal {
         // monte reservado para cartas separadas durante os empates
         Fila monteGuerra = new Fila();
 
-        Fila jogador1 = new Fila();
-        Fila jogador2 = new Fila();
+        Fila monteJogador1 = new Fila();
+        Fila monteJogador2 = new Fila();
 
         // gerar baralho em ordem aleatória
         for (Object carta : Baralho.getBaralho()) {
-            jogador1.enqueue(carta);
+            monteJogador1.enqueue(carta);
         }
         
         // gerar baralho em ordem aleatória
         for (Object carta : Baralho.getBaralho()) {
-            jogador2.enqueue(carta);
+            monteJogador2.enqueue(carta);
         }
 
-        while (!jogador1.isEmpty() && !jogador2.isEmpty()) {
+        while (!monteJogador1.isEmpty() && !monteJogador2.isEmpty()) {
             if (qtdeJogadas > 50000) {
                 break;
             }
 
-            cartaJogador1 = jogador1.dequeue();
-            cartaJogador2 = jogador2.dequeue();
+            cartaJogador1 = monteJogador1.dequeue();
+            cartaJogador2 = monteJogador2.dequeue();
 
             // após um empate deve retirar mais uma carta de cada jogador
             if (ehGuerra) {
-                monteGuerra.enqueue(jogador1.dequeue());
-                monteGuerra.enqueue(jogador2.dequeue());
+                monteGuerra.enqueue(monteJogador1.dequeue());
+                monteGuerra.enqueue(monteJogador2.dequeue());
             }
 
             if (cartaJogador1 != null && cartaJogador2 != null) {
                 if (comparaCartas(cartaJogador1, cartaJogador2)) {
-                    jogador1.enqueue(cartaJogador1);
-                    jogador1.enqueue(cartaJogador2);
+                    monteJogador1.enqueue(cartaJogador1);
+                    monteJogador1.enqueue(cartaJogador2);
 
                     if (ehGuerra) {
-                        ehGuerra = zerarMonteGuerra(monteGuerra, jogador1);
+                        ehGuerra = zerarMonteGuerra(monteGuerra, monteJogador1);
                     }
                 } else if (comparaCartas(cartaJogador2, cartaJogador1)) {
-                    jogador2.enqueue(cartaJogador1);
-                    jogador2.enqueue(cartaJogador2);
+                    monteJogador2.enqueue(cartaJogador1);
+                    monteJogador2.enqueue(cartaJogador2);
 
                     if (ehGuerra) {
-                        ehGuerra = zerarMonteGuerra(monteGuerra, jogador2);
+                        ehGuerra = zerarMonteGuerra(monteGuerra, monteJogador2);
                     }
                 } else {
                     //em caso de empate será declarado "guerra"
@@ -75,10 +75,10 @@ public class goingWarPrincipal {
             System.out.println("Limite de jogadas atingido!");
         } else {
 
-            if (jogador1.isEmpty()) {
+            if (monteJogador1.isEmpty()) {
                 System.out.println("Jogador 2 venceu!");
             }
-            if (jogador2.isEmpty()) {
+            if (monteJogador2.isEmpty()) {
                 System.out.println("Jogador 1 venceu!");
             }
         }
