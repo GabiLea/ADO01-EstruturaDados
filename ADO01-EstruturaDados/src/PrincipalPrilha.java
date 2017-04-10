@@ -7,13 +7,29 @@ public class PrincipalPrilha {
 
     public static void main(String[] args) {
         Pilha p = new Pilha();
-//        p.push(1);
-//        p.push(2);
-//        p.push(3);
-        while (!p.isEmpty()) {
-            int x = (int) p.pop();
-            System.out.print(x + "");
+        Object[] descartados = new Object[10];
+        int contador = 0;
+
+        //Preencher o vetor
+        for (int i = 1; i < 10; i++) {
+            p.push(i);
         }
+
+        while (p.verificarCartas()) {
+            int cartaTopo = (int) p.pop();
+            descartados[contador] = cartaTopo;
+            contador++;
+            int cartaSeguinte = (int) p.pop();
+             p.inserirBase(cartaSeguinte);
+        }
+       
+        for (int i = 0; i < descartados.length; i++) {
+            if (descartados[i] != null) {
+                System.out.println((i+1)+" - "+"Carta Descartada: "+ descartados[i]);
+            }
+        }
+        
+        System.out.println("Ultima Carta remanescente: "+ p.valorBase());
     }
 
 }
