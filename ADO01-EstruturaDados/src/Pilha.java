@@ -11,7 +11,7 @@ public class Pilha {
 
 // Construtor - Cria uma pilha vazia
     public Pilha() {
-        dados = new Object[10];
+        dados = new Object[50];
         topo = -1;
     }
 

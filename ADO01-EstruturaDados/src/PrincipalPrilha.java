@@ -7,11 +7,11 @@ public class PrincipalPrilha {
 
     public static void main(String[] args) {
         Pilha p = new Pilha();
-        Object[] descartados = new Object[10];
+        Object[] descartados = new Object[50];
         int contador = 0;
 
         //Preencher o vetor
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i <= 50; i++) {
             p.push(i);
         }
 
